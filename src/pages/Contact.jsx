@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import emailjs from 'emailjs-com'
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
 
 function Contact() {
   const [Name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [Message, setMessage] = useState("")
+  const [message, setmessage] = useState("")
 
   const sendHandler = async (e) => {
     e.preventDefault()
@@ -18,9 +19,11 @@ function Contact() {
 
     emailjs.send('service_d0ris9i', 'template_qoqjf8y', formData, 'Pzl7j3GHMpcreSWOe')
       .then((data) => {
-        toast.success("Message sent successfully!")
+        setmessage("Message sent successfully!")
       }).catch((err) => {
-        toast.error("Failed to send message. Please try again.");
+        setmessage("Failed to send message. Please try again.");
+        console.log(err);
+
       })
 
     setName("");
@@ -40,7 +43,7 @@ function Contact() {
             className="block rounded-lg bg-[hsla(0,0%,100%,0.8)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] border border-gray-300">
             <div className="flex flex-wrap">
               <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-                <form onSubmit={sendHandler}>
+               {message?message: <form onSubmit={sendHandler}>
                   <div className="relative mb-6">
                     <label
                       className="font-semibold"
@@ -82,7 +85,7 @@ function Contact() {
                     className="mb-6 w-full rounded bg-blue-600 hover:bg-blue-700 text-white px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal lg:mb-0">
                     Send
                   </button>
-                </form>
+                </form>}
               </div>
               <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
                 <div className="flex flex-wrap">
