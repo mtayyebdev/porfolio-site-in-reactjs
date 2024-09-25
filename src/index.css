@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active{
+    @apply text-white bg-blue-600 md:bg-transparent md:text-blue-600 hover:text-black
+}
+
+.spinner1{
+    animation: spinner1 5s linear infinite;
+  }
+  .spinner2{
+    animation: spinner1 4s linear infinite;
+  }
+  .spinner3{
+    animation: spinner1 3s linear infinite;
+  }
+  
+  @keyframes spinner1{
+    0%{
+      transform: rotate(360deg);
+    }
+    50%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
